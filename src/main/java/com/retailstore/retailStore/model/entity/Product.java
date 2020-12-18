@@ -37,6 +37,13 @@ public class Product extends AuditEntity {
     public Product() {
     }
 
+    public Product(UUID id, @NotNull @NotBlank String name, @NotNull BigDecimal price, Category category) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
+
     public Product(@NotNull @NotBlank String name, @NotNull BigDecimal price, Category category) {
         this.name = name;
         this.price = price;
