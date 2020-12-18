@@ -24,9 +24,12 @@ Retail Store Discount uses a number of open source projects to work properly:
 * [Spring boot](https://spring.io/projects/spring-boot) - makes it easy to create stand-alone, production-grade Spring based Applications.
 * [Restful APIs](https://restfulapi.net/) - is architectural style for distributed hypermedia systems.
 * [Hibernate JPA](https://docs.jboss.org/hibernate/entitymanager/3.6/reference/en/html_single/) - is a framework for mapping an object-oriented domain model to a relational database.
-* [postgresql](https://www.postgresql.org/) -  is a powerful, open source object-relational database system.
+* [Postgresql](https://www.postgresql.org/) -  is a powerful, open source object-relational database system.
 * [Docker](https://www.docker.com/) - is a set of platform as a service (PaaS) products that use OS-level virtualization.
 * [Docker Compose](https://docs.docker.com/compose/) - is a tool for running multi-container applications on Docker.
+* [Mockito](https://site.mockito.org/) - is an open source testing framework for Java.
+* [SonarQube](https://www.sonarqube.org/) - Catch bugs and vulnerabilities in your app, with thousands of automated Static Code Analysis rules.
+
 
 
 
@@ -39,8 +42,9 @@ And of course Retail Store Discount itself is open source with a [public reposit
 
 ```sh
 $ Clone the repository
-$ go into the project folder and execute docker-compose up --build
+$ Go into the project folder and exec docker-compose up --build
 $ The app should be up and running on localhost:8080
+$ SonarQube should be up and running on localhost:9000
 ```
 
 
@@ -48,7 +52,22 @@ $ The app should be up and running on localhost:8080
 
 
 
+### Test Cases
+```sh
+$ Clone the repository
+$ Go into the project folder and exec docker-compose up --build -d
+$ To run the test cases execute docker exec -it web-app mvn test
+```
 
+
+### SonarQube and Code coverage
+```sh
+$ Clone the repository
+$ Go into the project folder and exec docker-compose up --build -d
+$ Execute docker exec -it web-app mvn clean install
+$ Execute docker exec -it web-app mvn sonar:sonar
+$ The project will be listed on http://localhost:9000/projects
+```
 
 ### Demo Data
 
@@ -65,7 +84,7 @@ cceb42a0-9a27-47f8-bf4d-6c2362a56e6b, Remoon, New user
 - Calculate discount for the logged in user
 ```sh
 Request
-POST 
+GET 
 'http://127.0.0.1:8080/bill/payable' 
 --header 'Authorization: cceb42a0-9a27-47f8-bf4d-6c2362a56e6b'
 --header 'Content-Type: application/json' 
@@ -100,9 +119,9 @@ Response: fail
 
 
 ### Todos
+ - Replace current Auth system with openId connect
+ 
 
- - Writ Tests Cases
- - Replace current Auth system with OpenIdConnect or OAuth2
 
 
 
