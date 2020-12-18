@@ -16,6 +16,15 @@ services:
       - POSTGRES_DB=retail_store
     restart: unless-stopped
 
+  sonarqube:
+    image: sonarqube:7.5-community
+    network_mode: bridge
+    container_name: sonarqube
+    expose:
+      - 9000
+    ports:
+      - 9000:9000
+
   app:
     build: .
     container_name: web-app
@@ -27,8 +36,10 @@ services:
     restart: unless-stopped
     depends_on:
       - postgres
+      - sonarqube
     links:
       - postgres
+      - sonarqube
 
 volumes:
   postgres-data:
