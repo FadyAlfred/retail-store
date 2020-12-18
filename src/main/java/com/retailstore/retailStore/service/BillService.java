@@ -75,8 +75,8 @@ public class BillService {
         }
         int hundredDollarDiscount = Config.HUNDRED_DOLLAR_DISCOUNT;
 
-        double totalBillDiscount = Math.floor(payableBill.divide(new BigDecimal(100)).doubleValue())*hundredDollarDiscount;
+        double totalBillDiscount = Math.round(payableBill.divide(new BigDecimal(100)).doubleValue())*hundredDollarDiscount;
         BigDecimal finalBill = payableBill.subtract(BigDecimal.valueOf(totalBillDiscount));
-        return finalBill.longValue();
+        return Math.round(finalBill.doubleValue());
     }
 }
